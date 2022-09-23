@@ -6,7 +6,7 @@ import {
   IsMongoId,
 } from 'class-validator';
 
-export class UpdateArticleDto {
+export class CreateArticleDto {
   @IsString()
   @IsNotEmpty()
   titre: string;

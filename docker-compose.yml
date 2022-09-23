@@ -5,9 +5,9 @@ services:
         container_name: mongodb
         ports:
           - '27017:27017'
-        volumes: 
+        volumes:
           - ./data:/data/db
         environment:
-          MONGO_INIT_ROOT_USERNAME: ${MONGO_ROOT_USR}
+          MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USR}
           MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PWD}
           MONGO_INITDB_DATABASE: ${MONGO_BDD_NAME}

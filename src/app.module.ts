@@ -11,7 +11,7 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
     }),
     MongooseModule.forRootAsync({
       useFactory: () => ({
-        uri: process.env.MONGO_HOST,
+        uri: `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@${process.env.MONGO_HOST}`,
       }),
     }),
     ArticlesModule,

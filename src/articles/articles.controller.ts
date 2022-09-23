@@ -4,36 +4,42 @@ import {
   Get,
   Param,
   Post,
-  Req,
-  Put,
   Delete,
+  Patch,
 } from '@nestjs/common';
-import { Request } from 'express';
+import { CreateArticleDto } from './dto/create-article.dto';
+import { UpdateArticleDto } from './dto/update-articles.dto';
+import { ArticlesService } from './articles.service';
+import { Article } from 'src/schemas/article.schema';
 @Controller('/articles')
 export class ArticlesController {
+  constructor(private articlesService: ArticlesService) {}
+
+  @Post()
+  async create(@Body() createArticleDto: CreateArticleDto): Promise<Article> {
+    return this.articlesService.create(createArticleDto);
+  }
+
   @Get()
-  findAll(@Req() request: Request): string {
-    return 'récupération de tous les articles';
+  async findAll(): Promise<Article[]> {
+    return this.articlesService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param() params): string {
-    console.log('je suis le paramètre', params.id);
-    return `Retourne l'article correspondant à l'id #${params.id}`;
+  async findOne(@Param('id') id: string): Promise<Article> {
+    return this.articlesService.findOne(id);
   }
 
-  @Post()
-  create(@Body() createArticleDto): string {
-    return "création d'un article";
-  }
-
-  @Put(':id')
-  update(@Param('id') id: string, @Body() updateArticleDto): string {
-    return `Suppression de l'article ${id}`;
+  @Patch(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateArticleDto: UpdateArticleDto,
+  ): Promise<Article> {
+    return this.articlesService.update(id, updateArticleDto);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: string): string {
-    return `Suppression de l'article ${id}`;
+  async delete(@Param('id') id: string): Promise<any> {
+    return this.articlesService.delete(id);
   }
 }
