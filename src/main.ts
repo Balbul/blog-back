@@ -2,10 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  const ENV = process.env;
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.API_PORT);
-  console.log(`en écoute sur: http://localhost:${process.env.API_PORT}`);
+  await app.listen(ENV.API_PORT);
+  console.log(`Listen on : http://${ENV.API_HOST}:${ENV.API_PORT}`);
 }
+// ouverture du serveur
 try {
   bootstrap();
 } catch (e) {

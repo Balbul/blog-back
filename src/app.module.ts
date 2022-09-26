@@ -1,9 +1,11 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ArticlesModule } from './articles/articles.module';
-import { LoggerMiddleware } from './middleware/logger.middleware';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
+const ENV = process.env;
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -11,14 +13,12 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
     }),
     MongooseModule.forRootAsync({
       useFactory: () => ({
-        uri: `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@${process.env.MONGO_HOST}`,
+        uri: `mongodb://${ENV.MONGO_USER}:${ENV.MONGO_PWD}@${ENV.MONGO_HOST}`,
       }),
     }),
     ArticlesModule,
+    AuthModule,
+    UserModule,
   ],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('articles');
-  }
-}
+export class AppModule {}

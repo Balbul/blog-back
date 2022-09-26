@@ -10,19 +10,23 @@ export class ArticlesService {
     @InjectModel(Article.name) private ArticleModel: Model<ArticleDocument>,
   ) {}
 
-  async create(createArticleDto: CreateArticleDto): Promise<Article> {
+  async create(
+    createArticleDto: CreateArticleDto,
+    userId: string,
+  ): Promise<Article> {
     const articleACreer = JSON.parse(JSON.stringify(createArticleDto));
     articleACreer.dateCreation = new Date().toISOString();
+    articleACreer.redacteur = userId;
     const nouvelArticle = new this.ArticleModel(articleACreer);
-    return nouvelArticle.save();
+    return await nouvelArticle.save();
   }
 
   async findAll(): Promise<Article[]> {
-    return this.ArticleModel.find().exec();
+    return await this.ArticleModel.find().exec();
   }
 
   async findOne(id: string): Promise<Article> {
-    return this.ArticleModel.findById(id);
+    return await this.ArticleModel.findById(id);
   }
 
   async update(
@@ -31,10 +35,10 @@ export class ArticlesService {
   ): Promise<Article> {
     const articleAModifier = JSON.parse(JSON.stringify(updateArticleDto));
     articleAModifier.dateModification = new Date().toISOString();
-    return this.ArticleModel.findByIdAndUpdate(id, articleAModifier);
+    return await this.ArticleModel.findByIdAndUpdate(id, articleAModifier);
   }
 
   async delete(id: string): Promise<any> {
-    return this.ArticleModel.deleteOne({ id: id });
+    return await this.ArticleModel.deleteOne({ id: id });
   }
 }
