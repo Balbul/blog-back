@@ -7,7 +7,8 @@
 
 ## Description
 
-Back-end d'un blog pour une illustratrice.
+Back-end d'un blog.
+Une evolution sera réalisée pour y intégrer ultérieurement une boutique.
 
 ## Installation
 
@@ -21,33 +22,43 @@ $ npm install
 # development
 $ npm run start
 
-# watch mode
+# watch mode (mise à jour automatique à la sauvegarde d'un fichier)
 $ npm run start:dev
 
 # production mode
 $ npm run start:prod
 ```
 
-## Test
+## Fichier d'environnement .env
+
+créer un fichier .env qui contient :
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+MONGO_USER
+MONGO_PWD
+MONGO_ROOT_PWD
+MONGO_ROOT_USER
+...
 ```
 
 ## Docker
 
-Comment mettre en place le docker
+Lancer le docker (qui contient mongoDB)
+```bash
+$ docker-compose up
 
-## Environnement
+```
 
-variable à stocker dans un .env
+## Cahier des charges
+
+exposer une route /auth pour l'autentification
+exposer une route /articles pour la gestion et l'affichage des articles
+exposer une route /user pour la gestion des utilisateurs
+exposer une route /comment pour la gestion des commentaires
+
+Pour la route /articles, les méthodes POST, PATCH et DELETE doivent être protégées par un GUARD ( JwtToken ) et un GUARD ( être admin )
+Pour la route /comment, les méthodes POST et PATCH doivent être protégées par un GUARD ( JwtToken )
+Pour la route /comment, la méthode DELETE doit être protégée par un GUARD ( JwtToken ) et un GUARD ( être admin )
 
 ## License
 
