@@ -55,7 +55,7 @@ $ docker-compose up
 - exposer une route /articles pour la gestion et l'affichage des articles
 - exposer une route /user pour la gestion des utilisateurs
 - exposer une route /comment pour la gestion des commentaires
-======
+---
 - Pour la route /articles, les méthodes POST, PATCH et DELETE doivent être protégées par un GUARD ( JwtToken ) et un GUARD ( être admin )
 - Pour la route /comment, les méthodes POST et PATCH doivent être protégées par un GUARD ( JwtToken )
 - Pour la route /comment, la méthode DELETE doit être protégée par un GUARD ( JwtToken ) et un GUARD ( être admin )
