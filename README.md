@@ -16,7 +16,7 @@ Une evolution sera réalisée pour y intégrer ultérieurement une boutique.
 $ npm install
 ```
 
-## Running the app
+## Lancer le serveur
 
 ```bash
 # development
@@ -62,4 +62,4 @@ $ docker-compose up
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+Ce blog est sous une [MIT licensed](LICENSE).
