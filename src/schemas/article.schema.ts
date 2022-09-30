@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
+import { User } from 'src/schemas/user.schema';
 
 export type ArticleDocument = Article & Document;
 
@@ -23,8 +24,8 @@ export class Article {
   @Prop({ required: false, default: true })
   estAffiche: boolean;
 
-  @Prop({ required: true })
-  redacteur: string;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true })
+  redacteur: User;
 }
 
 export const ArticleSchema = SchemaFactory.createForClass(Article);

@@ -32,9 +32,11 @@ export class ArticlesService {
   async update(
     id: string,
     updateArticleDto: UpdateArticleDto,
+    userId: string,
   ): Promise<Article> {
     const articleAModifier = JSON.parse(JSON.stringify(updateArticleDto));
     articleAModifier.dateModification = new Date().toISOString();
+    articleAModifier.redacteur = userId;
     return await this.ArticleModel.findByIdAndUpdate(id, articleAModifier);
   }
 
