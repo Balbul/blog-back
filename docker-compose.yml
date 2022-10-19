@@ -1,13 +1,13 @@
 version: '3.8'
 services:
-    mongo:
-        image: mongo:6.0.1
-        container_name: mongodb
-        ports:
-          - '27017:27017'
-        volumes:
-          - ./data:/data/db
-        environment:
-          MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USR}
-          MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PWD}
-          MONGO_INITDB_DATABASE: ${MONGO_BDD_NAME}
+  mongo:
+    image: mongo:6.0.1
+    container_name: mongodb
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USR}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PWD}
+      MONGO_INITDB_DATABASE: ${MONGO_BDD_NAME}

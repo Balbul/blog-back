@@ -12,15 +12,15 @@ export class UserController {
     return await this.userService.createUser(connectUserDto);
   }
 
-  @Patch(':userId')
-  // modification des informations d'un utilisateur
+  // @Patch(':userId')
+  // // modification des informations d'un utilisateur
 
-  @Delete(':userId')
-  // suppression d'un utilisateur
+  // @Delete(':userId')
+  // // suppression d'un utilisateur
 
-  @Get()
-  // obtenir les informations de tous les utilisateurs pour l'admin
+  // @Get()
+  // // obtenir les informations de tous les utilisateurs pour l'admin
 
-  @Patch()
+  // @Patch()
   // modification du role admin d'un utilisateur par l'admin
 }

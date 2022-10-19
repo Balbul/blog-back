@@ -14,7 +14,7 @@ const ENV = process.env;
     }),
     MongooseModule.forRootAsync({
       useFactory: () => ({
-        uri: `mongodb://${ENV.MONGO_USER}:${ENV.MONGO_PWD}@${ENV.MONGO_HOST}`,
+        uri: ENV.MONGO_URL,
       }),
     }),
     ArticlesModule,
